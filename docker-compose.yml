@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  report:
+    build:
+      dockerfile: Dockerfile
+    image: file-storage/file-storage
