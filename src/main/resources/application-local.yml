@@ -1,0 +1,19 @@
+server:
+  servlet:
+    context-path: /file-storage
+  port: 8082
+
+spring:
+  application:
+    name: file-storage
+
+logging:
+  level:
+    org.springframework: INFO
+    com.example: DEBUG
+  file:
+    name: logs/app.log
+
+kafka:
+  bootstrapAddress: local:9091
+  groupId: group1
