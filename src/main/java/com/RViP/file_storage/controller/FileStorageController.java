@@ -2,13 +2,16 @@ package com.RViP.file_storage.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -17,14 +20,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import static com.RViP.file_storage.util.Constant.RESOURCES_DIR;
+
 @Slf4j
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class FileStorageController {
-
-    // Путь к папке resources
-    private static final String RESOURCES_DIR = "src/main/resources/file/";
 
     @PostMapping("/save")
     public ResponseEntity<String> uploadCsvFile(@RequestParam("file") MultipartFile file, @RequestParam UUID requestId) {
@@ -51,11 +53,10 @@ public class FileStorageController {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<byte[]> getReportById(@PathVariable String id) {
-        log.info("/find/{id} {}",id);
+        log.info("/find/{id} {}", id);
         try {
             // Определяем путь к файлу в папке resources
             String filePath = "readers-" + id + ".csv";  // Например, файл с расширением .pdf
-
 
 
             // Получаем исходное имя файла

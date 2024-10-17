@@ -13,3 +13,7 @@ logging:
     com.example: DEBUG
   file:
     name: logs/app.log
+
+kafka:
+  bootstrapAddress: kafka:9091
+  groupId: group1
